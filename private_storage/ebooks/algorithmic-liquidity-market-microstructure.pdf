@@ -1,0 +1,48 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 969 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 54 740 Tm (ENOX DIGITAL PUBLISHING - VERIFIED LICENSED EDITION) Tj
+1 0 0 1 54 720 Tm (Read. Learn. Grow.) Tj
+1 0 0 1 54 700 Tm (------------------------------------------------------------) Tj
+1 0 0 1 54 680 Tm (Title: Algorithmic Liquidity: Modern Market Microstructure & Order Book Dynamic) Tj
+1 0 0 1 54 660 Tm (Author: Siddharth Kapoor, CFA) Tj
+1 0 0 1 54 640 Tm (ISBN: 978-81-974021-5-2) Tj
+1 0 0 1 54 620 Tm (------------------------------------------------------------) Tj
+1 0 0 1 54 600 Tm (Chapter 1: The Geometry of the Limit Order Book) Tj
+1 0 0 1 54 580 Tm () Tj
+1 0 0 1 54 560 Tm (At any discrete microsecond, the limit order book is a two-sided queue of) Tj
+1 0 0 1 54 540 Tm (resting liquidity commitments exposed to informed flow.) Tj
+1 0 0 1 54 520 Tm () Tj
+1 0 0 1 54 500 Tm (------------------------------------------------------------) Tj
+1 0 0 1 54 480 Tm (Licensed for personal reading via ENOX Secure Digital Delivery.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001261 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1331
+%%EOF

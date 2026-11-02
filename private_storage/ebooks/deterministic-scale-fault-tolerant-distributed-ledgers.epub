@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Deterministic Scale: Architecture of Fault-Tolerant Distributed Ledgers — ENOX EPUB3 Edition</title>
+</head>
+<body>
+  <header>
+    <p>ENOX Digital Publishing — Read. Learn. Grow.</p>
+    <h1>Deterministic Scale: Architecture of Fault-Tolerant Distributed Ledgers</h1>
+    <p>By Dr. Vikramaditya Rao | ISBN: 978-81-974021-2-1</p>
+  </header>
+  <main>
+    <section><h2>Chapter 1: Why At-Least-Once Delivery Requires Idempotent Sinks</h2><p>Every external webhook is a potentially duplicated message. Treating an incoming payment notification as an blind append operation guarantees eventual double-fulfillment. Instead, an idempotent sink records the provider's unique event identifier inside the same atomic boundary that transitions the order state.</p></section>
+<section><h2>Chapter 2: Constant-Time Cryptographic Verification</h2><p>Before parsing a single field of a webhook payload for business logic, verify the HMAC-SHA256 digest computed over the exact raw byte stream using constant-time byte comparison.</p></section>
+  </main>
+</body>
+</html>

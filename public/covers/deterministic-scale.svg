@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="600" y2="840" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3F4731"/>
+      <stop offset="55%" stop-color="#2F3624"/>
+      <stop offset="100%" stop-color="#23281B"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="840" rx="20" fill="url(#bg2)"/>
+  <rect x="28" y="28" width="544" height="784" rx="14" fill="#F7F3EB" fill-opacity="0.04" stroke="#B89455" stroke-opacity="0.45" stroke-width="1.5"/>
+  <rect x="64" y="68" width="210" height="28" rx="6" fill="#B89455" fill-opacity="0.22"/>
+  <text x="80" y="87" fill="#E8D2A6" font-family="system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="2.5">SYSTEMS ARCHITECTURE · 02</text>
+  <line x1="64" y1="118" x2="536" y2="118" stroke="#7C8665" stroke-opacity="0.4" stroke-width="1.5"/>
+  <!-- Architectural Node Matrix -->
+  <rect x="130" y="185" width="340" height="270" rx="22" fill="#F7F3EB" fill-opacity="0.07" stroke="#7C8665" stroke-opacity="0.5" stroke-width="1.5"/>
+  <g stroke="#B89455" stroke-opacity="0.7" stroke-width="2">
+    <line x1="190" y1="245" x2="410" y2="245"/>
+    <line x1="190" y1="320" x2="410" y2="320"/>
+    <line x1="190" y1="395" x2="410" y2="395"/>
+    <line x1="190" y1="245" x2="190" y2="395"/>
+    <line x1="300" y1="245" x2="300" y2="395"/>
+    <line x1="410" y1="245" x2="410" y2="395"/>
+    <line x1="190" y1="245" x2="410" y2="395"/>
+  </g>
+  <circle cx="190" cy="245" r="14" fill="#7C8665" stroke="#F7F3EB" stroke-width="3"/>
+  <circle cx="300" cy="320" r="22" fill="#B89455" stroke="#F7F3EB" stroke-width="3.5"/>
+  <circle cx="410" cy="395" r="14" fill="#7C8665" stroke="#F7F3EB" stroke-width="3"/>
+  <circle cx="410" cy="245" r="11" fill="#EDE9DA"/>
+  <circle cx="190" cy="395" r="11" fill="#EDE9DA"/>
+  <!-- Title -->
+  <rect x="64" y="518" width="84" height="6" rx="3" fill="#B89455"/>
+  <text x="64" y="575" fill="#F7F3EB" font-family="system-ui, sans-serif" font-size="38" font-weight="800" letter-spacing="-1">DETERMINISTIC</text>
+  <text x="64" y="622" fill="#EDE9DA" font-family="system-ui, sans-serif" font-size="38" font-weight="800" letter-spacing="-1">SCALE</text>
+  <text x="64" y="664" fill="#C7C2B4" font-family="system-ui, sans-serif" font-size="18" font-weight="400">Fault-Tolerant Distributed Systems</text>
+  <rect x="64" y="718" width="472" height="48" rx="10" fill="#F7F3EB" fill-opacity="0.1" stroke="#B89455" stroke-opacity="0.35"/>
+  <text x="84" y="748" fill="#F7F3EB" font-family="system-ui, sans-serif" font-size="16" font-weight="600">Dr. Vikramaditya Rao</text>
+</svg>

@@ -1,0 +1,54 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1494 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 54 740 Tm (ENOX DIGITAL PUBLISHING - VERIFIED LICENSED EDITION) Tj
+1 0 0 1 54 720 Tm (Read. Learn. Grow.) Tj
+1 0 0 1 54 700 Tm (------------------------------------------------------------) Tj
+1 0 0 1 54 680 Tm (Title: Refractive Systems: Designing Spatial & Liquid Glass Interfaces) Tj
+1 0 0 1 54 660 Tm (Author: Aarav Mehta & Elena Rostova) Tj
+1 0 0 1 54 640 Tm (ISBN: 978-81-974021-1-4) Tj
+1 0 0 1 54 620 Tm (------------------------------------------------------------) Tj
+1 0 0 1 54 600 Tm (Chapter 1: The Optics of Digital Translucency) Tj
+1 0 0 1 54 580 Tm () Tj
+1 0 0 1 54 560 Tm (Every translucent surface in a digital interface makes a promise about) Tj
+1 0 0 1 54 540 Tm (spatial order. When a card refracts the canvas beneath it, the reader) Tj
+1 0 0 1 54 520 Tm (subconsciously infers elevation, materiality, and focus. Yet translucency) Tj
+1 0 0 1 54 500 Tm (without discipline quickly degrades into visual noise. In ENOX's optical) Tj
+1 0 0 1 54 480 Tm (framework, we separate every glass plane into three measurable layers: the) Tj
+1 0 0 1 54 460 Tm (base backdrop attenuation \(blur + saturation\), the body tint luminance, and) Tj
+1 0 0 1 54 440 Tm (the 1-pixel specular rim that anchors the boundary against shifting) Tj
+1 0 0 1 54 420 Tm (backgrounds.) Tj
+1 0 0 1 54 400 Tm () Tj
+1 0 0 1 54 380 Tm (------------------------------------------------------------) Tj
+1 0 0 1 54 360 Tm (Licensed for personal reading via ENOX Secure Digital Delivery.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001787 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1857
+%%EOF

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840" fill="none">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="600" y2="840" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FBF8F1"/>
+      <stop offset="100%" stop-color="#EAE3D2"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="840" rx="20" fill="url(#bg3)"/>
+  <rect x="28" y="28" width="544" height="784" rx="14" fill="#FFFFFF" fill-opacity="0.55" stroke="#7C8665" stroke-opacity="0.45" stroke-width="1.5"/>
+  <rect x="64" y="68" width="180" height="28" rx="6" fill="#B89455" fill-opacity="0.2"/>
+  <text x="80" y="87" fill="#7D5D26" font-family="system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="2.5">APPLIED AI SERIES · 03</text>
+  <line x1="64" y1="118" x2="536" y2="118" stroke="#E0D8C8" stroke-width="1.5"/>
+  <!-- Layered Inference Waves -->
+  <rect x="110" y="185" width="380" height="270" rx="24" fill="#7C8665" fill-opacity="0.12" stroke="#7C8665" stroke-opacity="0.35" stroke-width="1.5"/>
+  <circle cx="300" cy="320" r="95" fill="#B89455" fill-opacity="0.22" stroke="#B89455" stroke-width="2"/>
+  <circle cx="300" cy="320" r="62" fill="#7C8665" fill-opacity="0.35" stroke="#525B3E" stroke-width="2"/>
+  <circle cx="300" cy="320" r="28" fill="#292929"/>
+  <path d="M150 320 Q225 230 300 320 T450 320" stroke="#B89455" stroke-width="4" fill="none"/>
+  <rect x="64" y="518" width="84" height="6" rx="3" fill="#7C8665"/>
+  <text x="64" y="575" fill="#292929" font-family="system-ui, sans-serif" font-size="38" font-weight="800" letter-spacing="-1">PRODUCTION</text>
+  <text x="64" y="622" fill="#525B3E" font-family="system-ui, sans-serif" font-size="38" font-weight="800" letter-spacing="-1">INFERENCE</text>
+  <text x="64" y="664" fill="#524F49" font-family="system-ui, sans-serif" font-size="18" font-weight="500">LLM Systems, Prompt Playbooks &amp; Eval</text>
+  <rect x="64" y="718" width="472" height="48" rx="10" fill="#EDE9DA" stroke="#D8CFC0"/>
+  <text x="84" y="748" fill="#292929" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Rohan Kulkarni</text>
+</svg>

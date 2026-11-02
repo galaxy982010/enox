@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840" fill="none">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="600" y2="840" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#35322C"/>
+      <stop offset="100%" stop-color="#22201C"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="840" rx="20" fill="url(#bg5)"/>
+  <rect x="28" y="28" width="544" height="784" rx="14" fill="#FFFFFF" fill-opacity="0.03" stroke="#B89455" stroke-opacity="0.5" stroke-width="1.5"/>
+  <rect x="64" y="68" width="215" height="28" rx="6" fill="#B89455" fill-opacity="0.22"/>
+  <text x="80" y="87" fill="#E5C88E" font-family="system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="2.5">QUANTITATIVE SERIES · 05</text>
+  <line x1="64" y1="118" x2="536" y2="118" stroke="#B89455" stroke-opacity="0.3" stroke-width="1"/>
+  <!-- Warm Gold & Olive Order Book Bars -->
+  <rect x="120" y="340" width="38" height="100" rx="8" fill="#7C8665" fill-opacity="0.65"/>
+  <rect x="174" y="290" width="38" height="150" rx="8" fill="#7C8665" fill-opacity="0.85"/>
+  <rect x="228" y="235" width="38" height="205" rx="8" fill="#B89455"/>
+  <rect x="282" y="305" width="38" height="135" rx="8" fill="#EDE9DA" fill-opacity="0.75"/>
+  <rect x="336" y="255" width="38" height="185" rx="8" fill="#7C8665"/>
+  <rect x="390" y="195" width="38" height="245" rx="8" fill="#D4B475"/>
+  <rect x="444" y="240" width="38" height="200" rx="8" fill="#B89455" fill-opacity="0.75"/>
+  <rect x="64" y="518" width="84" height="6" rx="3" fill="#B89455"/>
+  <text x="64" y="575" fill="#F7F3EB" font-family="system-ui, sans-serif" font-size="38" font-weight="800" letter-spacing="-1">ALGORITHMIC</text>
+  <text x="64" y="622" fill="#D4B475" font-family="system-ui, sans-serif" font-size="38" font-weight="800" letter-spacing="-1">LIQUIDITY</text>
+  <text x="64" y="664" fill="#CFC9BC" font-family="system-ui, sans-serif" font-size="18" font-weight="400">Market Microstructure &amp; Financial Models</text>
+  <rect x="64" y="718" width="472" height="48" rx="10" fill="#F7F3EB" fill-opacity="0.08" stroke="#B89455" stroke-opacity="0.35"/>
+  <text x="84" y="748" fill="#EDE9DA" font-family="system-ui, sans-serif" font-size="16" font-weight="600">Siddharth Kapoor, CFA</text>
+</svg>

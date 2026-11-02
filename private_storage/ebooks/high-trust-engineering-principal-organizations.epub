@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>High-Trust Engineering: Scaling Principal Technical Organizations — ENOX EPUB3 Edition</title>
+</head>
+<body>
+  <header>
+    <p>ENOX Digital Publishing — Read. Learn. Grow.</p>
+    <h1>High-Trust Engineering: Scaling Principal Technical Organizations</h1>
+    <p>By Maya Krishnan | ISBN: 978-81-974021-6-9</p>
+  </header>
+  <main>
+    <section><h2>Chapter 1: Architecture as Organizational Topology</h2><p>Conway's Law is not an observation to lament; it is a design lever. When interfaces between subsystems are crisp and contract-tested, teams gain genuine autonomy.</p></section>
+  </main>
+</body>
+</html>

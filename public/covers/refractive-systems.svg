@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840" fill="none">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="600" y2="840" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F7F3EB"/>
+      <stop offset="55%" stop-color="#EDE9DA"/>
+      <stop offset="100%" stop-color="#E2DAC8"/>
+    </linearGradient>
+    <linearGradient id="goldOrb" x1="150" y1="180" x2="450" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B89455" stop-opacity="0.88"/>
+      <stop offset="100%" stop-color="#7C8665" stop-opacity="0.78"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="840" rx="20" fill="url(#bg1)"/>
+  <rect x="28" y="28" width="544" height="784" rx="14" fill="#FFFFFF" fill-opacity="0.45" stroke="#B89455" stroke-opacity="0.45" stroke-width="1.5"/>
+  <rect x="64" y="68" width="160" height="28" rx="6" fill="#7C8665" fill-opacity="0.16"/>
+  <text x="80" y="87" fill="#525B3E" font-family="system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="2.5">ENOX DESIGN · 01</text>
+  <line x1="64" y1="118" x2="536" y2="118" stroke="#D8CFC0" stroke-width="1.5"/>
+  <!-- Refractive Liquid Glass Geometric Art -->
+  <circle cx="300" cy="310" r="128" fill="url(#goldOrb)"/>
+  <circle cx="245" cy="280" r="95" fill="#F7F3EB" fill-opacity="0.55" stroke="#FFFFFF" stroke-width="2"/>
+  <rect x="215" y="220" width="190" height="190" rx="28" fill="#FFFFFF" fill-opacity="0.52" stroke="#B89455" stroke-width="2"/>
+  <circle cx="310" cy="315" r="42" fill="#292929"/>
+  <circle cx="324" cy="301" r="10" fill="#B89455"/>
+  <!-- Editorial Title Block -->
+  <rect x="64" y="518" width="84" height="6" rx="3" fill="#B89455"/>
+  <text x="64" y="575" fill="#292929" font-family="system-ui, sans-serif" font-size="40" font-weight="800" letter-spacing="-1">REFRACTIVE</text>
+  <text x="64" y="622" fill="#292929" font-family="system-ui, sans-serif" font-size="40" font-weight="800" letter-spacing="-1">SYSTEMS</text>
+  <text x="64" y="664" fill="#524F49" font-family="system-ui, sans-serif" font-size="18" font-weight="500">Spatial Interfaces &amp; Liquid Glass UI</text>
+  <rect x="64" y="718" width="472" height="48" rx="10" fill="#EDE9DA" stroke="#D8CFC0"/>
+  <text x="84" y="748" fill="#292929" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Aarav Mehta</text>
+  <text x="445" y="748" fill="#7C8665" font-family="system-ui, sans-serif" font-size="13" font-weight="700">EDITION II</text>
+</svg>

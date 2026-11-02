@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Production Inference: Low-Latency Language & Multimodal Systems — ENOX EPUB3 Edition</title>
+</head>
+<body>
+  <header>
+    <p>ENOX Digital Publishing — Read. Learn. Grow.</p>
+    <h1>Production Inference: Low-Latency Language & Multimodal Systems</h1>
+    <p>By Nadia Lindqvist & Rohan Deshmukh | ISBN: 978-81-974021-3-8</p>
+  </header>
+  <main>
+    <section><h2>Chapter 1: The Memory Wall in Autoregressive Decoding</h2><p>Token generation is overwhelmingly memory-bandwidth bound rather than compute bound. Understanding arithmetic intensity lets you predict latency before provisioning a single GPU cluster.</p></section>
+  </main>
+</body>
+</html>

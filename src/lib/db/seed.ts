@@ -1,0 +1,875 @@
+import type {
+  Book,
+  Category,
+  CreatorPayoutRecord,
+  CreatorProfile,
+  EarningsLedgerEntry,
+  LegalPage,
+  LibraryEntry,
+  Order,
+  PaymentRecord,
+  Promotion,
+  Review,
+  UserProfile,
+} from "@/types/enox";
+import { hashPassword } from "@/lib/security/crypto";
+
+export interface StoredUserRecord extends UserProfile {
+  password_hash: string;
+  reset_token?: string | null;
+  reset_token_exp?: number | null;
+}
+
+export function getInitialCategories(): Category[] {
+  return [
+    {
+      id: "cat-ebooks",
+      name: "Ebooks & Guides",
+      slug: "ebooks-guides",
+      description: "In-depth technical monographs, design manuals, and practical field guides.",
+      icon_name: "BookOpen",
+      sort_order: 1,
+    },
+    {
+      id: "cat-study",
+      name: "Study Resources",
+      slug: "study-resources",
+      description: "Structured revision notes, synthesis workbooks, and exam-ready frameworks.",
+      icon_name: "Compass",
+      sort_order: 2,
+    },
+    {
+      id: "cat-templates",
+      name: "Templates",
+      slug: "templates",
+      description: "Ready-to-use architectural blueprints, UI kits, and documentation systems.",
+      icon_name: "Layers",
+      sort_order: 3,
+    },
+    {
+      id: "cat-prompts",
+      name: "AI Prompts",
+      slug: "ai-prompts",
+      description: "Engineered prompt libraries, evaluation rubrics, and workflow automations.",
+      icon_name: "Sparkles",
+      sort_order: 4,
+    },
+    {
+      id: "cat-planners",
+      name: "Planners",
+      slug: "planners",
+      description: "Minimalist quarterly roadmaps, deep-work trackers, and reading logs.",
+      icon_name: "Calendar",
+      sort_order: 5,
+    },
+    {
+      id: "cat-business",
+      name: "Business Resources",
+      slug: "business-resources",
+      description: "Financial models, operating playbooks, and founder strategy kits.",
+      icon_name: "TrendingUp",
+      sort_order: 6,
+    },
+  ];
+}
+
+export function getInitialCreators(): CreatorProfile[] {
+  return [
+    {
+      id: "creator-aarav",
+      user_id: "user-creator-1",
+      name: "Aarav Mehta",
+      slug: "aarav-mehta",
+      handle: "@aaravmehta",
+      specialty: "Design Systems & Spatial Interfaces",
+      short_bio:
+        "Principal design systems architect publishing practical guides and UI tokens for product teams.",
+      avatar_initials: "AM",
+      plan: "premium",
+      commission_rate_percent: 20,
+      max_active_listings: 25,
+      joined_at: "2026-07-12T10:00:00.000Z",
+    },
+    {
+      id: "creator-vikram",
+      user_id: "user-admin-1",
+      name: "Dr. Vikramaditya Rao",
+      slug: "vikramaditya-rao",
+      handle: "@vikramrao",
+      specialty: "Distributed Systems & Financial Infrastructure",
+      short_bio:
+        "Distributed systems engineer writing monographs on fault-tolerant transaction engines and architecture.",
+      avatar_initials: "VR",
+      plan: "premium",
+      commission_rate_percent: 20,
+      max_active_listings: 25,
+      joined_at: "2026-07-18T10:00:00.000Z",
+    },
+    {
+      id: "creator-clara",
+      user_id: "user-creator-1",
+      name: "Clara Vance",
+      slug: "clara-vance",
+      handle: "@claravance",
+      specialty: "Cognitive Strategy & Research Planners",
+      short_bio:
+        "Cognitive researcher creating synthesis templates, study guides, and long-horizon decision planners.",
+      avatar_initials: "CV",
+      plan: "free",
+      commission_rate_percent: 30,
+      max_active_listings: 5,
+      joined_at: "2026-08-02T10:00:00.000Z",
+    },
+    {
+      id: "creator-rohan",
+      user_id: "user-creator-1",
+      name: "Rohan Deshmukh",
+      slug: "rohan-deshmukh",
+      handle: "@rohandeshmukh",
+      specialty: "Applied AI Systems & Prompt Libraries",
+      short_bio:
+        "AI systems lead authoring production inference manuals and structured prompt packs.",
+      avatar_initials: "RD",
+      plan: "free",
+      commission_rate_percent: 30,
+      max_active_listings: 5,
+      joined_at: "2026-08-19T10:00:00.000Z",
+    },
+  ];
+}
+
+export function getInitialBooks(): Book[] {
+  return [
+    {
+      id: "book-glass-interfaces",
+      title: "Refractive Systems: Designing Spatial & Liquid Glass Interfaces",
+      slug: "refractive-systems-liquid-glass-interfaces",
+      subtitle: "Optical hierarchy, translucent surfaces, and tactile motion for modern digital products",
+      author: "Aarav Mehta",
+      creator_slug: "aarav-mehta",
+      author_bio:
+        "Aarav Mehta is a principal design systems architect focused on high-clarity digital reading and spatial interface tokens.",
+      short_description:
+        "A practical guide to crafting translucent, optically grounded user interfaces with clean typography and accessible contrast.",
+      full_description:
+        "Refractive Systems explores the structure and perception of modern translucent interfaces. Moving past decorative blur, this volume establishes a clear framework for optical depth, luminance contrast, subtle edge highlights, and responsive surface adaptation.\n\nAcross eleven illustrated chapters, you will learn how to construct multi-layered hierarchies that remain legible on mobile and desktop alike, while respecting hardware budgets and reduced-motion accessibility.",
+      category_id: "cat-ebooks",
+      category_name: "Ebooks & Guides",
+      category_slug: "ebooks-guides",
+      cover_image: "/covers/refractive-systems.svg",
+      price_inr: 899,
+      original_price_inr: 1299,
+      currency: "INR",
+      publication_date: "2026-09-15",
+      language: "English",
+      formats: ["PDF", "EPUB"],
+      pages: 312,
+      isbn: "978-81-974021-1-4",
+      file_size_label: "14.2 MB",
+      private_pdf_path: "refractive-systems-liquid-glass-interfaces.pdf",
+      private_epub_path: "refractive-systems-liquid-glass-interfaces.epub",
+      sample_pages: [
+        {
+          chapter_number: 1,
+          chapter_title: "The Optics of Digital Translucency",
+          content:
+            "Every translucent surface in a digital interface communicates spatial order. When a surface subtly refracts the warm canvas beneath it, the reader infers hierarchy and focus without heavy borders.\n\nIn this chapter we break every surface into three measurable tokens: backdrop attenuation, surface tint luminance, and the 1-pixel specular rim.",
+        },
+        {
+          chapter_number: 2,
+          chapter_title: "Typographic Contrast on Warm Surfaces",
+          content:
+            "Readable typography requires disciplined contrast. Pairing deep charcoal ink (#292929) with warm cream (#F7F3EB) and crisp white surfaces (#FFFFFF) ensures effortless long-form reading.",
+        },
+      ],
+      highlights: [
+        "Complete CSS token reference for translucent surfaces, borders, and elevation",
+        "Contrast checklists for desktop, tablet, and mobile viewports",
+        "Reduced-motion fallbacks and performance guidelines",
+        "Includes DRM-free vector PDF and reflowable EPUB3 files",
+      ],
+      status: "published",
+      is_featured: true,
+      is_bestseller: true,
+      is_demo: true,
+      rating_avg: 5.0,
+      review_count: 2,
+      sales_count: 18,
+      created_at: "2026-09-15T10:00:00.000Z",
+      updated_at: "2026-10-20T10:00:00.000Z",
+    },
+    {
+      id: "book-distributed-consensus",
+      title: "Deterministic Scale: Architecture of Fault-Tolerant Distributed Ledgers",
+      slug: "deterministic-scale-fault-tolerant-distributed-ledgers",
+      subtitle: "Idempotency, consensus protocols, and transactional state machines",
+      author: "Dr. Vikramaditya Rao",
+      creator_slug: "vikramaditya-rao",
+      author_bio:
+        "Dr. Vikramaditya Rao has spent 18 years architecting payment clearing switches and distributed storage engines.",
+      short_description:
+        "Master the engineering principles behind payment-grade state machines, idempotent webhook ingestion, and deterministic recovery.",
+      full_description:
+        "Modern financial and commerce infrastructure cannot tolerate ambiguous state. Deterministic Scale walks through state machines, write-ahead logs, serializable isolation patterns, and cryptographic verification pipelines used in reliable transaction systems.",
+      category_id: "cat-ebooks",
+      category_name: "Ebooks & Guides",
+      category_slug: "ebooks-guides",
+      cover_image: "/covers/deterministic-scale.svg",
+      price_inr: 1199,
+      original_price_inr: 1599,
+      currency: "INR",
+      publication_date: "2026-08-22",
+      language: "English",
+      formats: ["PDF", "EPUB"],
+      pages: 448,
+      isbn: "978-81-974021-2-1",
+      file_size_label: "11.8 MB",
+      private_pdf_path: "deterministic-scale-fault-tolerant-distributed-ledgers.pdf",
+      private_epub_path: "deterministic-scale-fault-tolerant-distributed-ledgers.epub",
+      sample_pages: [
+        {
+          chapter_number: 1,
+          chapter_title: "Why At-Least-Once Delivery Requires Idempotent Sinks",
+          content:
+            "Every external webhook is a potentially duplicated message. An idempotent sink records the provider's unique event identifier inside the same atomic boundary that transitions the order state.",
+        },
+      ],
+      highlights: [
+        "State-machine diagrams for orders, captures, and refunds",
+        "PostgreSQL row-level locking and idempotency key schemas",
+        "Complete reference implementations in TypeScript and SQL",
+      ],
+      status: "published",
+      is_featured: true,
+      is_bestseller: true,
+      is_demo: true,
+      rating_avg: 5.0,
+      review_count: 1,
+      sales_count: 14,
+      created_at: "2026-08-22T10:00:00.000Z",
+      updated_at: "2026-10-18T10:00:00.000Z",
+    },
+    {
+      id: "book-inference-engineering",
+      title: "Structured AI Prompt & Evaluation Library for Engineering Teams",
+      slug: "production-inference-low-latency-systems",
+      subtitle: "120+ battle-tested system prompts, JSON schemas, and verification rubrics",
+      author: "Rohan Deshmukh",
+      creator_slug: "rohan-deshmukh",
+      author_bio:
+        "Rohan Deshmukh leads applied AI engineering teams focused on deterministic model workflows.",
+      short_description:
+        "A curated collection of production prompt templates, schema guardrails, and evaluation checklists for software teams.",
+      full_description:
+        "Stop guessing prompt structures from scratch. This digital resource pack delivers 120 modular system prompts, structured output schemas, code-review rubrics, and automated evaluation templates ready to drop into your engineering workflow.",
+      category_id: "cat-prompts",
+      category_name: "AI Prompts",
+      category_slug: "ai-prompts",
+      cover_image: "/covers/production-inference.svg",
+      price_inr: 999,
+      original_price_inr: 1399,
+      currency: "INR",
+      publication_date: "2026-10-04",
+      language: "English",
+      formats: ["PDF", "EPUB"],
+      pages: 210,
+      isbn: "978-81-974021-3-8",
+      file_size_label: "9.5 MB",
+      private_pdf_path: "production-inference-low-latency-systems.pdf",
+      private_epub_path: "production-inference-low-latency-systems.epub",
+      sample_pages: [
+        {
+          chapter_number: 1,
+          chapter_title: "Deterministic Schema Prompting",
+          content:
+            "Constrain model outputs by pairing explicit JSON schema definitions with negative boundary examples.",
+        },
+      ],
+      highlights: [
+        "120+ categorized prompt templates for architecture, QA, and data analysis",
+        "Copy-ready JSON schema definitions and validation rubrics",
+        "Delivered in searchable PDF and reflowable EPUB",
+      ],
+      status: "published",
+      is_featured: true,
+      is_bestseller: false,
+      is_demo: true,
+      rating_avg: 4.0,
+      review_count: 1,
+      sales_count: 9,
+      created_at: "2026-10-04T10:00:00.000Z",
+      updated_at: "2026-10-25T10:00:00.000Z",
+    },
+    {
+      id: "book-epistemic-clarity",
+      title: "The Sovereign Mind: Deep Study & Research Synthesis Workbook",
+      slug: "the-sovereign-mind-epistemic-clarity",
+      subtitle: "Structured study resources, literature matrices, and retention frameworks",
+      author: "Clara Vance",
+      creator_slug: "clara-vance",
+      author_bio:
+        "Clara Vance is a cognitive researcher designing study systems and synthesis tools for students and researchers.",
+      short_description:
+        "Cultivate disciplined attention, rigorous note-taking, and high-retention study habits with structured templates.",
+      full_description:
+        "The Sovereign Mind presents a practical architecture for building a personal study corpus, summarizing complex papers, and preparing for demanding technical examinations.",
+      category_id: "cat-study",
+      category_name: "Study Resources",
+      category_slug: "study-resources",
+      cover_image: "/covers/sovereign-mind.svg",
+      price_inr: 649,
+      original_price_inr: 899,
+      currency: "INR",
+      publication_date: "2026-07-19",
+      language: "English",
+      formats: ["PDF", "EPUB"],
+      pages: 256,
+      isbn: "978-81-974021-4-5",
+      file_size_label: "6.8 MB",
+      private_pdf_path: "the-sovereign-mind-epistemic-clarity.pdf",
+      private_epub_path: "the-sovereign-mind-epistemic-clarity.epub",
+      sample_pages: [
+        {
+          chapter_number: 1,
+          chapter_title: "Progressive Synthesis for Complex Texts",
+          content:
+            "Distill dense textbooks into single-page concept maps that compound across semesters.",
+        },
+      ],
+      highlights: [
+        "Progressive synthesis method for technical and academic study",
+        "Printable and tablet-ready study worksheets included",
+        "Formatted for zero-distraction reading",
+      ],
+      status: "published",
+      is_featured: true,
+      is_bestseller: true,
+      is_demo: true,
+      rating_avg: 5.0,
+      review_count: 1,
+      sales_count: 22,
+      created_at: "2026-07-19T10:00:00.000Z",
+      updated_at: "2026-10-12T10:00:00.000Z",
+    },
+    {
+      id: "book-quant-microstructure",
+      title: "Founder Operating Model & Capital Allocation Playbook",
+      slug: "algorithmic-liquidity-market-microstructure",
+      subtitle: "Unit economics, runway forecasting, and board reporting resources",
+      author: "Dr. Vikramaditya Rao",
+      creator_slug: "vikramaditya-rao",
+      author_bio:
+        "Dr. Vikramaditya Rao advises technology founders on capital allocation and financial modeling.",
+      short_description:
+        "A comprehensive business resource manual covering SaaS & marketplace unit economics, cohort modeling, and cash-flow discipline.",
+      full_description:
+        "Built for founders and operators, this resource walks through cohort retention math, contribution margin analysis, and scenario planning.",
+      category_id: "cat-business",
+      category_name: "Business Resources",
+      category_slug: "business-resources",
+      cover_image: "/covers/algorithmic-liquidity.svg",
+      price_inr: 1499,
+      original_price_inr: 1999,
+      currency: "INR",
+      publication_date: "2026-10-18",
+      language: "English",
+      formats: ["PDF"],
+      pages: 320,
+      isbn: "978-81-974021-5-2",
+      file_size_label: "12.1 MB",
+      private_pdf_path: "algorithmic-liquidity-market-microstructure.pdf",
+      private_epub_path: null,
+      sample_pages: [
+        {
+          chapter_number: 1,
+          chapter_title: "Unit Economics & Payback Windows",
+          content:
+            "Measure net revenue retention and payback periods before scaling acquisition spend.",
+        },
+      ],
+      highlights: [
+        "Complete financial modeling frameworks and operating checklists",
+        "Board memo and investor update templates",
+        "High-resolution vector PDF edition",
+      ],
+      status: "published",
+      is_featured: false,
+      is_bestseller: false,
+      is_demo: true,
+      rating_avg: 0,
+      review_count: 0,
+      sales_count: 7,
+      created_at: "2026-10-18T10:00:00.000Z",
+      updated_at: "2026-10-22T10:00:00.000Z",
+    },
+    {
+      id: "book-high-trust-engineering",
+      title: "Architecture Decision Record (ADR) & RFC Template System + Quarterly Planner",
+      slug: "high-trust-engineering-principal-organizations",
+      subtitle: "Complete engineering governance templates and quarterly execution planner",
+      author: "Aarav Mehta",
+      creator_slug: "aarav-mehta",
+      author_bio:
+        "Aarav Mehta builds design and engineering workflow templates used by product teams.",
+      short_description:
+        "Standardize technical specs, RFC reviews, and quarterly roadmap planning with this clean template and planner kit.",
+      full_description:
+        "Includes 18 structured RFC and ADR templates alongside a 90-day quarterly engineering planner formatted for digital tablets and desktop.",
+      category_id: "cat-templates",
+      category_name: "Templates",
+      category_slug: "templates",
+      cover_image: "/covers/high-trust-engineering.svg",
+      price_inr: 799,
+      original_price_inr: 999,
+      currency: "INR",
+      publication_date: "2026-10-28",
+      language: "English",
+      formats: ["PDF", "EPUB"],
+      pages: 164,
+      isbn: "978-81-974021-6-9",
+      file_size_label: "7.4 MB",
+      private_pdf_path: "high-trust-engineering-principal-organizations.pdf",
+      private_epub_path: "high-trust-engineering-principal-organizations.epub",
+      sample_pages: [
+        {
+          chapter_number: 1,
+          chapter_title: "How to Structure a Crisp 2-Page RFC",
+          content:
+            "State the problem, explicit non-goals, trade-off matrix, and rollback plan before writing code.",
+        },
+      ],
+      highlights: [
+        "18 copy-ready RFC, ADR, and postmortem templates",
+        "90-day quarterly execution planner pages",
+        "Includes both PDF and EPUB editions",
+      ],
+      status: "published",
+      is_featured: true,
+      is_bestseller: false,
+      is_demo: true,
+      rating_avg: 0,
+      review_count: 0,
+      sales_count: 11,
+      created_at: "2026-10-28T10:00:00.000Z",
+      updated_at: "2026-10-28T10:00:00.000Z",
+    },
+    {
+      id: "book-draft-unpublished",
+      title: "Zero-Knowledge Proofs in Practice (Pending Creator Submission)",
+      slug: "zero-knowledge-proofs-in-practice-draft",
+      subtitle: "Unapproved creator submission reserved for Admin Approval Queue",
+      author: "Clara Vance",
+      creator_slug: "clara-vance",
+      author_bio: "Internal submission to verify that unapproved products never appear publicly.",
+      short_description: "Awaiting editorial approval — visible only inside Creator & Admin dashboards.",
+      full_description: "This listing has status='pending_review' and must never appear in public storefront queries.",
+      category_id: "cat-ebooks",
+      category_name: "Ebooks & Guides",
+      category_slug: "ebooks-guides",
+      cover_image: "/covers/deterministic-scale.svg",
+      price_inr: 1299,
+      original_price_inr: null,
+      currency: "INR",
+      publication_date: "2026-11-01",
+      language: "English",
+      formats: ["PDF"],
+      pages: 220,
+      isbn: "978-81-974021-9-0",
+      file_size_label: "5.0 MB",
+      private_pdf_path: "zero-knowledge-proofs-in-practice-draft.pdf",
+      private_epub_path: null,
+      sample_pages: [],
+      highlights: ["Pending admin review"],
+      status: "pending_review",
+      is_featured: false,
+      is_bestseller: false,
+      is_demo: true,
+      rating_avg: 0,
+      review_count: 0,
+      sales_count: 0,
+      created_at: "2026-11-01T10:00:00.000Z",
+      updated_at: "2026-11-01T10:00:00.000Z",
+    },
+  ];
+}
+
+export function getInitialUsers(): StoredUserRecord[] {
+  return [
+    {
+      id: "user-admin-1",
+      email: "admin@enox.store",
+      full_name: "ENOX Platform Admin",
+      bio: "Platform Administrator & Marketplace Moderator at ENOX Ebooks.",
+      role: "admin",
+      creator_slug: "vikramaditya-rao",
+      creator_plan: "premium",
+      newsletter_consent: true,
+      password_hash: hashPassword("EnoxAdmin!2026"),
+      created_at: "2026-07-01T09:00:00.000Z",
+      updated_at: "2026-10-01T09:00:00.000Z",
+    },
+    {
+      id: "user-reader-1",
+      email: "reader@enox.store",
+      full_name: "Ananya Verma",
+      bio: "Principal Systems Designer & digital creator.",
+      role: "customer",
+      creator_slug: "aarav-mehta",
+      creator_plan: "free",
+      newsletter_consent: true,
+      password_hash: hashPassword("EnoxReader!2026"),
+      created_at: "2026-08-10T11:30:00.000Z",
+      updated_at: "2026-10-15T11:30:00.000Z",
+    },
+  ];
+}
+
+export function getInitialPromotions(): Promotion[] {
+  return [
+    {
+      id: "promo-enox20",
+      code: "ENOX20",
+      title: "Reader 20% Welcome Discount",
+      description: "20% off any digital product order (up to ₹500 maximum savings).",
+      discount_type: "percentage",
+      discount_value: 20,
+      min_order_inr: 500,
+      max_discount_inr: 500,
+      is_active: true,
+      starts_at: "2026-07-01T00:00:00.000Z",
+      expires_at: "2027-12-31T23:59:59.000Z",
+      usage_count: 14,
+    },
+    {
+      id: "promo-read150",
+      code: "READ150",
+      title: "Flat ₹150 Study Credit",
+      description: "Flat ₹150 discount on cart subtotals of ₹999 or above.",
+      discount_type: "fixed_inr",
+      discount_value: 150,
+      min_order_inr: 999,
+      max_discount_inr: 150,
+      is_active: true,
+      starts_at: "2026-08-01T00:00:00.000Z",
+      expires_at: "2027-12-31T23:59:59.000Z",
+      usage_count: 8,
+    },
+  ];
+}
+
+export function getInitialOrders(): Order[] {
+  return [
+    {
+      id: "ord-initial-1001",
+      order_number: "ENX-2026-1001",
+      user_id: "user-reader-1",
+      customer_email: "reader@enox.store",
+      customer_name: "Ananya Verma",
+      subtotal_inr: 2098,
+      discount_inr: 420,
+      total_inr: 1678,
+      currency: "INR",
+      promo_code: "ENOX20",
+      status: "paid",
+      payment_status: "captured",
+      razorpay_order_id: "order_enox_verified_1001",
+      razorpay_payment_id: "pay_enox_verified_1001",
+      items: [
+        {
+          id: "item-1001-1",
+          order_id: "ord-initial-1001",
+          book_id: "book-glass-interfaces",
+          book_slug: "refractive-systems-liquid-glass-interfaces",
+          title_snapshot: "Refractive Systems: Designing Spatial & Liquid Glass Interfaces",
+          author_snapshot: "Aarav Mehta",
+          cover_snapshot: "/covers/refractive-systems.svg",
+          unit_price_inr: 899,
+          quantity: 1,
+        },
+        {
+          id: "item-1001-2",
+          order_id: "ord-initial-1001",
+          book_id: "book-distributed-consensus",
+          book_slug: "deterministic-scale-fault-tolerant-distributed-ledgers",
+          title_snapshot: "Deterministic Scale: Architecture of Fault-Tolerant Distributed Ledgers",
+          author_snapshot: "Dr. Vikramaditya Rao",
+          cover_snapshot: "/covers/deterministic-scale.svg",
+          unit_price_inr: 1199,
+          quantity: 1,
+        },
+      ],
+      created_at: "2026-10-15T14:22:00.000Z",
+      updated_at: "2026-10-15T14:23:10.000Z",
+    },
+  ];
+}
+
+export function getInitialPayments(): PaymentRecord[] {
+  return [
+    {
+      id: "pay-rec-1001",
+      order_id: "ord-initial-1001",
+      user_id: "user-reader-1",
+      provider: "razorpay",
+      razorpay_order_id: "order_enox_verified_1001",
+      razorpay_payment_id: "pay_enox_verified_1001",
+      amount_inr: 1678,
+      currency: "INR",
+      status: "captured",
+      signature_verified: true,
+      webhook_confirmed: true,
+      method: "upi",
+      failure_reason: null,
+      created_at: "2026-10-15T14:23:10.000Z",
+      updated_at: "2026-10-15T14:23:10.000Z",
+    },
+  ];
+}
+
+export function getInitialLibrary(): LibraryEntry[] {
+  return [
+    {
+      id: "lib-1001-1",
+      user_id: "user-reader-1",
+      book_id: "book-glass-interfaces",
+      order_id: "ord-initial-1001",
+      order_number: "ENX-2026-1001",
+      status: "active",
+      download_count: 2,
+      last_downloaded_at: "2026-10-20T18:10:00.000Z",
+      granted_at: "2026-10-15T14:23:10.000Z",
+      revoked_at: null,
+    },
+    {
+      id: "lib-1001-2",
+      user_id: "user-reader-1",
+      book_id: "book-distributed-consensus",
+      order_id: "ord-initial-1001",
+      order_number: "ENX-2026-1001",
+      status: "active",
+      download_count: 1,
+      last_downloaded_at: "2026-10-16T09:45:00.000Z",
+      granted_at: "2026-10-15T14:23:10.000Z",
+      revoked_at: null,
+    },
+  ];
+}
+
+export function getInitialReviews(): Review[] {
+  return [
+    {
+      id: "rev-1",
+      book_id: "book-glass-interfaces",
+      user_id: "user-reader-1",
+      reviewer_name: "Ananya Verma",
+      rating: 5,
+      title: "Clear, practical reference on optical UI hierarchy",
+      comment:
+        "Every chapter balances perceptual clarity with concrete CSS token geometry. Very easy to apply.",
+      verified_purchase: true,
+      status: "published",
+      created_at: "2026-10-18T16:30:00.000Z",
+      updated_at: "2026-10-18T16:30:00.000Z",
+    },
+    {
+      id: "rev-2",
+      book_id: "book-glass-interfaces",
+      user_id: "user-admin-1",
+      reviewer_name: "ENOX Editorial Review",
+      rating: 5,
+      title: "Clean typesetting in both PDF and EPUB",
+      comment:
+        "Verified layout across desktop monitors and tablets. Diagrams remain crisp at high zoom.",
+      verified_purchase: true,
+      status: "published",
+      created_at: "2026-10-19T11:00:00.000Z",
+      updated_at: "2026-10-19T11:00:00.000Z",
+    },
+    {
+      id: "rev-3",
+      book_id: "book-distributed-consensus",
+      user_id: "user-reader-1",
+      reviewer_name: "Ananya Verma",
+      rating: 5,
+      title: "Essential reading for engineers building payment pipelines",
+      comment:
+        "Chapter 4 on idempotent webhook deduplication directly shaped how we audit financial callbacks.",
+      verified_purchase: true,
+      status: "published",
+      created_at: "2026-10-17T10:15:00.000Z",
+      updated_at: "2026-10-17T10:15:00.000Z",
+    },
+    {
+      id: "rev-4",
+      book_id: "book-inference-engineering",
+      user_id: "user-admin-1",
+      reviewer_name: "ENOX Technical Review",
+      rating: 4,
+      title: "Well-structured prompt schemas and rubrics",
+      comment:
+        "Practical collection of JSON schemas and evaluation checklists for engineering teams.",
+      verified_purchase: true,
+      status: "published",
+      created_at: "2026-10-21T08:00:00.000Z",
+      updated_at: "2026-10-21T08:00:00.000Z",
+    },
+    {
+      id: "rev-5",
+      book_id: "book-epistemic-clarity",
+      user_id: "user-admin-1",
+      reviewer_name: "ENOX Editorial Review",
+      rating: 5,
+      title: "A calm, lucid manual for study and synthesis",
+      comment:
+        "Practical worksheets and synthesis frameworks without unnecessary filler.",
+      verified_purchase: true,
+      status: "published",
+      created_at: "2026-10-10T12:00:00.000Z",
+      updated_at: "2026-10-10T12:00:00.000Z",
+    },
+  ];
+}
+
+export function getInitialEarningsLedger(): EarningsLedgerEntry[] {
+  return [
+    {
+      id: "led-1001-1",
+      order_id: "ord-initial-1001",
+      order_number: "ENX-2026-1001",
+      book_id: "book-glass-interfaces",
+      book_title: "Refractive Systems: Designing Spatial & Liquid Glass Interfaces",
+      creator_name: "Aarav Mehta",
+      creator_slug: "aarav-mehta",
+      gross_inr: 719,
+      commission_rate_percent: 20,
+      enox_commission_inr: 144,
+      creator_net_inr: 575,
+      status: "settled",
+      created_at: "2026-10-15T14:23:10.000Z",
+    },
+    {
+      id: "led-1001-2",
+      order_id: "ord-initial-1001",
+      order_number: "ENX-2026-1001",
+      book_id: "book-distributed-consensus",
+      book_title: "Deterministic Scale: Architecture of Fault-Tolerant Distributed Ledgers",
+      creator_name: "Dr. Vikramaditya Rao",
+      creator_slug: "vikramaditya-rao",
+      gross_inr: 959,
+      commission_rate_percent: 20,
+      enox_commission_inr: 192,
+      creator_net_inr: 767,
+      status: "settled",
+      created_at: "2026-10-15T14:23:10.000Z",
+    },
+  ];
+}
+
+export function getInitialPayoutRecords(): CreatorPayoutRecord[] {
+  return [
+    {
+      id: "pay-out-1",
+      creator_name: "Aarav Mehta",
+      creator_slug: "aarav-mehta",
+      amount_inr: 575,
+      period_label: "October 2026 Settlement (Demo Record)",
+      status: "processed",
+      created_at: "2026-10-31T10:00:00.000Z",
+    },
+    {
+      id: "pay-out-2",
+      creator_name: "Dr. Vikramaditya Rao",
+      creator_slug: "vikramaditya-rao",
+      amount_inr: 767,
+      period_label: "October 2026 Settlement (Demo Record)",
+      status: "scheduled",
+      created_at: "2026-10-31T10:00:00.000Z",
+    },
+  ];
+}
+
+export function getInitialLegalPages(): LegalPage[] {
+  return [
+    {
+      slug: "terms",
+      title: "Terms of Service",
+      subtitle: "Governing your use of the ENOX Ebooks digital marketplace and creator tools",
+      last_updated: "2026-11-01",
+      updated_at: "2026-11-01T00:00:00.000Z",
+      content_markdown: `## 1. Agreement to Terms
+By accessing or using **ENOX Ebooks**, you agree to be bound by these Terms of Service. Replace placeholder legal entity details in Admin Settings prior to commercial launch.
+
+## 2. Digital Products & Personal License
+Upon verified payment in Indian Rupees (INR), customers receive a non-exclusive, non-transferable license to download and use the purchased digital product for personal or permitted professional reference.
+
+## 3. Creator Plans & Commissions
+Creators may publish under the **Free Creator Plan** (₹0/month, up to 5 active listings, 30% platform commission per sale) or the **ENOX Premium Plan** (₹999/month, up to 25 active listings, 20% platform commission per sale). If a Premium subscription expires, listings above the 5-product Free limit are temporarily unlisted—never deleted—and existing customer purchases remain accessible in customer libraries.`,
+    },
+    {
+      slug: "privacy",
+      title: "Privacy Policy",
+      subtitle: "How ENOX Ebooks collects, protects, and processes personal information",
+      last_updated: "2026-11-01",
+      updated_at: "2026-11-01T00:00:00.000Z",
+      content_markdown: `## 1. Data Minimization
+ENOX Ebooks collects only the information necessary to manage accounts, verify orders, deliver digital files, and calculate creator earnings.
+
+## 2. Payment Security
+ENOX never stores raw card numbers, CVV codes, or UPI PINs. Payment processing is handled via server-verified gateway integration.`,
+    },
+    {
+      slug: "refund-policy",
+      title: "Refund Policy",
+      subtitle: "Clear rules for digital product orders, defective files, and duplicate charges",
+      last_updated: "2026-11-01",
+      updated_at: "2026-11-01T00:00:00.000Z",
+      content_markdown: `## 1. Eligible Refund Scenarios
+We issue full refunds when a digital file is technically defective and cannot be replaced within 48 hours, when a duplicate charge occurs, or when an undownloaded order is cancelled within 24 hours of purchase.
+
+## 2. Ownership Revocation on Refund
+When a refund is processed, order status transitions to \`refunded\` and library download access for that order is automatically revoked.`,
+    },
+    {
+      slug: "download-policy",
+      title: "Digital Download Policy",
+      subtitle: "How secure delivery and short-lived signed URLs work on ENOX Ebooks",
+      last_updated: "2026-11-01",
+      updated_at: "2026-11-01T00:00:00.000Z",
+      content_markdown: `## 1. Verified Entitlement
+Download buttons are active only when the server confirms an active, non-refunded purchase record in your ENOX Library.
+
+## 2. Short-Lived Signed Links
+Every download request generates a short-lived (5-minute) cryptographically signed token from private storage.`,
+    },
+    {
+      slug: "seller-guidelines",
+      title: "Seller Guidelines",
+      subtitle: "Quality, originality, and approval standards for ENOX creators",
+      last_updated: "2026-11-01",
+      updated_at: "2026-11-01T00:00:00.000Z",
+      content_markdown: `## 1. Originality & Intellectual Property
+Creators must own full rights or valid commercial licenses for all ebooks, templates, study guides, and digital files submitted to ENOX Ebooks.
+
+## 2. Editorial Review Workflow
+New product submissions enter the \`pending_review\` state. Products only appear in the public marketplace after an ENOX moderator approves them to \`published\`.
+
+## 3. Accurate Descriptions
+Listings must clearly state file formats (PDF, EPUB), page counts, and what the buyer will receive without misleading guarantees or fabricated ratings.`,
+    },
+    {
+      slug: "copyright-complaints",
+      title: "Copyright Complaints",
+      subtitle: "Procedure for reporting intellectual property or copyright infringement",
+      last_updated: "2026-11-01",
+      updated_at: "2026-11-01T00:00:00.000Z",
+      content_markdown: `## 1. Reporting Infringement
+If you believe a listing on ENOX Ebooks infringes your copyright, click the **Report Product** button on the product detail page or contact our moderation desk via the Contact page with:
+- Identification of the copyrighted work claimed to have been infringed.
+- The URL or product title of the reported ENOX listing.
+- Your contact details and a good-faith statement of ownership.
+
+## 2. Takedown & Investigation
+Reported listings are reviewed in the Admin Copyright Reports queue and may be unlisted or removed pending investigation.`,
+    },
+  ];
+}

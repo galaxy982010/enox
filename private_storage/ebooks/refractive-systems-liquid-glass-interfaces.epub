@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Refractive Systems: Designing Spatial & Liquid Glass Interfaces — ENOX EPUB3 Edition</title>
+</head>
+<body>
+  <header>
+    <p>ENOX Digital Publishing — Read. Learn. Grow.</p>
+    <h1>Refractive Systems: Designing Spatial & Liquid Glass Interfaces</h1>
+    <p>By Aarav Mehta & Elena Rostova | ISBN: 978-81-974021-1-4</p>
+  </header>
+  <main>
+    <section><h2>Chapter 1: The Optics of Digital Translucency</h2><p>Every translucent surface in a digital interface makes a promise about spatial order. When a card refracts the canvas beneath it, the reader subconsciously infers elevation, materiality, and focus. Yet translucency without discipline quickly degrades into visual noise.
+
+In ENOX's optical framework, we separate every glass plane into three measurable layers: the base backdrop attenuation (blur + saturation), the body tint luminance, and the 1-pixel specular rim that anchors the boundary against shifting backgrounds.</p></section>
+<section><h2>Chapter 2: Typographic Contrast on Frosted Planes</h2><p>High-trust reading demands unwavering contrast. By pairing deep obsidian-navy ink (#0B1120) with a minimum 72% porcelain-white surface opacity, body copy maintains WCAG AAA readability even when chromatic artwork passes beneath the viewport.</p></section>
+  </main>
+</body>
+</html>
